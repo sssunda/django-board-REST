@@ -4,8 +4,12 @@ from rest_framework import viewsets
 from .serializers import PostingSerializer, CommentSerializer, PostingDetailSerializer
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView 
 
 # Create your views here.
+class BoardView(TemplateView): 
+    template_name = 'board/board.html'
+
 class PostingViewSet(viewsets.ModelViewSet):
     queryset = Posting.objects.all()
     serializer_class = PostingSerializer
