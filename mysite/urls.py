@@ -21,6 +21,7 @@ from board import views
 router = routers.DefaultRouter()
 router.register(r'postings', views.PostingViewSet)
 router.register(r'comments', views.CommentViewSet)
+router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     path('api/postings/<int:pk>/', views.posting_detail),

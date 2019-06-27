@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from .models import Posting, Comment
 from rest_framework import viewsets
-from .serializers import PostingSerializer, CommentSerializer, PostingDetailSerializer
+from .serializers import PostingSerializer, CommentSerializer, PostingDetailSerializer, UserSerializer
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView 
+from django.contrib.auth.models import User
 
 # Create your views here.
 class BoardView(TemplateView): 
@@ -17,6 +18,10 @@ class PostingViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 @csrf_exempt
 def posting_detail(request, pk):

@@ -27,6 +27,10 @@
                 if (key == 'url') {
                     continue;
                 }
+                else if (key=='name'){
+                    boardItem += "<td>" + item[key]['username'] + "</td>";
+                    continue;    
+                }
                 boardItem += "<td>" + item[key] + "</td>";
             }
             boardItem += "</tr>"
@@ -48,7 +52,7 @@
                                     $('#board_list').append(addboardItem(postings[i]))
                                 }
                             }
-                        }
+                        },
                 })
         }) 
     </script>
