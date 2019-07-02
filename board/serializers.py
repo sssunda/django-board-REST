@@ -22,10 +22,10 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('posting', 'name', 'text')
 
 class PostingDetailSerializer(serializers.HyperlinkedModelSerializer):
-
+    name = UserSerializer()
     class Meta:
         model=Posting
-        fields = ('name', 'title', 'text', 'create_date', 'modified_date')
+        fields = ('title', 'name', 'text', 'create_date', 'modified_date')
 
 class CustomPagination(pagination.PageNumberPagination):
     

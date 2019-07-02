@@ -31,7 +31,7 @@ def posting_detail(request, pk):
         return HttpResponse(status=404)
     
     if request.method=='GET':
-        serializer = PostingDetailSerializer(posting, context=('request'))
+        serializer = PostingDetailSerializer(posting, context={'request': request})
         return JsonResponse(serializer.data)
 
 @csrf_exempt
