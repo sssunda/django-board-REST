@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 class BoardView(TemplateView): 
-    template_name = 'board/board.html'
+    template_name = 'board/list.html'
 
 class PostingViewSet(viewsets.ModelViewSet):
     queryset = Posting.objects.all()
