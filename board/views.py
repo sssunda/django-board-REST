@@ -8,8 +8,8 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 
 # Create your views here.
-class BoardView(TemplateView): 
-    template_name = 'board/list.html'
+# class BoardView(TemplateView): 
+#     template_name = 'board/list.html'
 
 class PostingViewSet(viewsets.ModelViewSet):
     queryset = Posting.objects.all()
