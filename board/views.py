@@ -1,19 +1,19 @@
 from django.shortcuts import render
 from .models import Posting, Comment
 from rest_framework import viewsets
-from .serializers import PostingSerializer, CommentSerializer, PostingDetailSerializer, UserSerializer
+from .serializers import PostingSerializer, CommentSerializer,  UserSerializer
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView 
 from django.contrib.auth.models import User
 
-# Create your views here.
-# class BoardView(TemplateView): 
-#     template_name = 'board/list.html'
-
 class PostingViewSet(viewsets.ModelViewSet):
     queryset = Posting.objects.all()
     serializer_class = PostingSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
@@ -22,17 +22,6 @@ class CommentViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-@csrf_exempt
-def posting_detail(request, pk):
-    try:
-        posting = Posting.objects.get(pk=pk)
-    except Posting.DoesNotExist:
-        return HttpResponse(status=404)
-    
-    if request.method=='GET':
-        serializer = PostingDetailSerializer(posting, context={'request': request})
-        return JsonResponse(serializer.data)
 
 @csrf_exempt
 def posting_comments(request, pk):
