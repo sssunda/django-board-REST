@@ -11,4 +11,5 @@ router.register(r'users', views.UserViewSet)
 urlpatterns = [
     path('api/', include(router.urls)),    
     path('admin/', admin.site.urls),
+    path('api/postings/<int:pk>/comments/', views.posting_comments),
 ]
